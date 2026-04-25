@@ -28,7 +28,12 @@ public class TicTacToe {
 
         // UC3: Accept User Slot Input (1-9)
         int slot = getPlayerInput(currentPlayer);
-        System.out.println("You entered slot: " + slot);
+
+        // UC4: Convert Slot Number to Board Index (Row, Column)
+        int row = (slot - 1) / 3;
+        int col = (slot - 1) % 3;
+
+        System.out.println("Slot " + slot + " maps to Index: [" + row + "][" + col + "]");
     }
 
     // UC3: Method to read integer input from user
