@@ -1,4 +1,5 @@
 import java.util.Random;
+import java.util.Scanner;
 
 public class TicTacToe {
     public static void main(String[] args) {
@@ -8,30 +9,36 @@ public class TicTacToe {
         System.out.println("Game Started - Empty Board:");
         displayBoard(board);
 
-        // UC2: Toss to decide who starts first and assign symbols
+        // UC2: Toss to decide who starts first
         System.out.println("\nPerforming Toss...");
         Random random = new Random();
-        int toss = random.nextInt(2); // 0 for Player 1, 1 for Player 2
+        int toss = random.nextInt(2);
 
-        String firstPlayer;
-        char firstPlayerSymbol = 'X';
+        String currentPlayer;
+        char currentSymbol = 'X';
 
         if (toss == 0) {
-            firstPlayer = "Player 1";
+            currentPlayer = "Player 1";
             System.out.println("Toss Result: Player 1 starts first.");
         } else {
-            firstPlayer = "Player 2";
+            currentPlayer = "Player 2";
             System.out.println("Toss Result: Player 2 starts first.");
         }
-
-        // Storing game state variables
-        String currentPlayer = firstPlayer;
-        char currentSymbol = firstPlayerSymbol;
-
         System.out.println(currentPlayer + " is assigned symbol: " + currentSymbol);
+
+        // UC3: Accept User Slot Input (1-9)
+        int slot = getPlayerInput(currentPlayer);
+        System.out.println("You entered slot: " + slot);
     }
 
-    // Helper method to initialize the board
+    // UC3: Method to read integer input from user
+    public static int getPlayerInput(String player) {
+        Scanner scanner = new Scanner(System.in);
+        System.out.print(player + ", enter a slot number (1-9): ");
+        return scanner.nextInt();
+    }
+
+    // UC1: Helper method to initialize the board
     public static void initializeBoard(char[][] board) {
         for (int i = 0; i < 3; i++) {
             for (int j = 0; j < 3; j++) {
@@ -40,7 +47,7 @@ public class TicTacToe {
         }
     }
 
-    // Helper method to display the board
+    // UC1: Helper method to display the board
     public static void displayBoard(char[][] board) {
         for (int i = 0; i < 3; i++) {
             for (int j = 0; j < 3; j++) {
