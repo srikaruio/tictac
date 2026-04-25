@@ -33,7 +33,20 @@ public class TicTacToe {
         int row = (slot - 1) / 3;
         int col = (slot - 1) % 3;
 
-        System.out.println("Slot " + slot + " maps to Index: [" + row + "][" + col + "]");
+        // UC5: Validate User Move
+        if (isValidMove(board, row, col)) {
+            System.out.println("Move is valid at Index: [" + row + "][" + col + "]");
+        } else {
+            System.out.println("Invalid Move! Either out of bounds or cell is already occupied.");
+        }
+    }
+
+    // UC5: Method to validate if the move is within bounds and the cell is empty
+    public static boolean isValidMove(char[][] board, int row, int col) {
+        if (row >= 0 && row < 3 && col >= 0 && col < 3) {
+            return board[row][col] == '-';
+        }
+        return false;
     }
 
     // UC3: Method to read integer input from user
