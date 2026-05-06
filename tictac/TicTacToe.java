@@ -49,6 +49,13 @@ public class TicTacToe {
                     break;
                 }
 
+                // UC10: Check for draw
+                if (isDraw(board)) {
+                    System.out.println("The game is a Draw!");
+                    gameRunning = false;
+                    break;
+                }
+
                 // UC7: Switch Player Turn
                 currentPlayer = (currentPlayer.equals("Player 1")) ? "Player 2" : "Player 1";
                 currentSymbol = (currentSymbol == 'X') ? 'O' : 'X';
@@ -56,6 +63,18 @@ public class TicTacToe {
                 System.out.println("Invalid Move! Cell is already occupied or out of bounds. Try again.");
             }
         }
+    }
+
+    // UC10: Method to check if the game is a draw
+    public static boolean isDraw(char[][] board) {
+        for (int i = 0; i < 3; i++) {
+            for (int j = 0; j < 3; j++) {
+                if (board[i][j] == '-') {
+                    return false;
+                }
+            }
+        }
+        return true;
     }
 
     // UC9: Method to check if the current player has won
