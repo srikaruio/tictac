@@ -42,6 +42,13 @@ public class TicTacToe {
                 placeMove(board, row, col, currentSymbol);
                 displayBoard(board);
 
+                // UC9: Check for winner
+                if (isWinner(board, currentSymbol)) {
+                    System.out.println("Congratulations! " + currentPlayer + " wins!");
+                    gameRunning = false;
+                    break;
+                }
+
                 // UC7: Switch Player Turn
                 currentPlayer = (currentPlayer.equals("Player 1")) ? "Player 2" : "Player 1";
                 currentSymbol = (currentSymbol == 'X') ? 'O' : 'X';
@@ -49,6 +56,23 @@ public class TicTacToe {
                 System.out.println("Invalid Move! Cell is already occupied or out of bounds. Try again.");
             }
         }
+    }
+
+    // UC9: Method to check if the current player has won
+    public static boolean isWinner(char[][] board, char symbol) {
+        // Check rows and columns
+        for (int i = 0; i < 3; i++) {
+            if ((board[i][0] == symbol && board[i][1] == symbol && board[i][2] == symbol) ||
+                (board[0][i] == symbol && board[1][i] == symbol && board[2][i] == symbol)) {
+                return true;
+            }
+        }
+        // Check diagonals
+        if ((board[0][0] == symbol && board[1][1] == symbol && board[2][2] == symbol) ||
+            (board[0][2] == symbol && board[1][1] == symbol && board[2][0] == symbol)) {
+            return true;
+        }
+        return false;
     }
 
     // UC6: Method to place the move on the board
