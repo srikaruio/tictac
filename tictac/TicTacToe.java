@@ -36,9 +36,18 @@ public class TicTacToe {
         // UC5: Validate User Move
         if (isValidMove(board, row, col)) {
             System.out.println("Move is valid at Index: [" + row + "][" + col + "]");
+            // UC6: Place Move on Board
+            placeMove(board, row, col, currentSymbol);
+            System.out.println("Board after move:");
+            displayBoard(board);
         } else {
             System.out.println("Invalid Move! Either out of bounds or cell is already occupied.");
         }
+    }
+
+    // UC6: Method to place the move on the board
+    public static void placeMove(char[][] board, int row, int col, char symbol) {
+        board[row][col] = symbol;
     }
 
     // UC5: Method to validate if the move is within bounds and the cell is empty
