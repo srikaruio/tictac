@@ -40,6 +40,11 @@ public class TicTacToe {
             placeMove(board, row, col, currentSymbol);
             System.out.println("Board after move:");
             displayBoard(board);
+
+            // UC7: Switch Player Turn
+            currentPlayer = (currentPlayer.equals("Player 1")) ? "Player 2" : "Player 1";
+            currentSymbol = (currentSymbol == 'X') ? 'O' : 'X';
+            System.out.println("Turn switched. Next is " + currentPlayer + " with symbol: " + currentSymbol);
         } else {
             System.out.println("Invalid Move! Either out of bounds or cell is already occupied.");
         }
