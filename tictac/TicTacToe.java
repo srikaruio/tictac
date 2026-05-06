@@ -26,27 +26,28 @@ public class TicTacToe {
         }
         System.out.println(currentPlayer + " is assigned symbol: " + currentSymbol);
 
-        // UC3: Accept User Slot Input (1-9)
-        int slot = getPlayerInput(currentPlayer);
+        // UC8: Continuous Turn-Based Game Loop
+        boolean gameRunning = true;
+        while (gameRunning) {
+            // UC3: Accept User Slot Input (1-9)
+            int slot = getPlayerInput(currentPlayer);
 
-        // UC4: Convert Slot Number to Board Index (Row, Column)
-        int row = (slot - 1) / 3;
-        int col = (slot - 1) % 3;
+            // UC4: Convert Slot Number to Board Index (Row, Column)
+            int row = (slot - 1) / 3;
+            int col = (slot - 1) % 3;
 
-        // UC5: Validate User Move
-        if (isValidMove(board, row, col)) {
-            System.out.println("Move is valid at Index: [" + row + "][" + col + "]");
-            // UC6: Place Move on Board
-            placeMove(board, row, col, currentSymbol);
-            System.out.println("Board after move:");
-            displayBoard(board);
+            // UC5: Validate User Move
+            if (isValidMove(board, row, col)) {
+                // UC6: Place Move on Board
+                placeMove(board, row, col, currentSymbol);
+                displayBoard(board);
 
-            // UC7: Switch Player Turn
-            currentPlayer = (currentPlayer.equals("Player 1")) ? "Player 2" : "Player 1";
-            currentSymbol = (currentSymbol == 'X') ? 'O' : 'X';
-            System.out.println("Turn switched. Next is " + currentPlayer + " with symbol: " + currentSymbol);
-        } else {
-            System.out.println("Invalid Move! Either out of bounds or cell is already occupied.");
+                // UC7: Switch Player Turn
+                currentPlayer = (currentPlayer.equals("Player 1")) ? "Player 2" : "Player 1";
+                currentSymbol = (currentSymbol == 'X') ? 'O' : 'X';
+            } else {
+                System.out.println("Invalid Move! Cell is already occupied or out of bounds. Try again.");
+            }
         }
     }
 
